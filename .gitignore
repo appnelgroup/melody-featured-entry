@@ -1,0 +1,8 @@
+.DS_Store
+Makefile.old
+Makefile
+blib/
+pm_to_blib
+*.bak
+*.tar.gz
+*.zip

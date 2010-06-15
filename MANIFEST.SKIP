@@ -1,0 +1,9 @@
+~$
+\.old$
+\.bak$
+^build
+^MANIFEST
+^plugins/auth-rpx/t\b
+^test
+^\.
+^\.git$
