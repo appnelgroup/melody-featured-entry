@@ -47,24 +47,30 @@ sub save_featured_status {
 
 sub blog_sticky_entry {
     my ($ctx, $args, $cond) = @_;
+    $args->{lastn} = 1;
+    reuturn blog_sticky_entries($ctx,$args, $cond);
+}
+
+sub blog_stick_entries {
+    my ($ctx, $args, $cond) = @_;
     my $blog_id = $ctx->stash('blog_id');
     unless ($blog_id) {
         my $blog = $ctx->stash('blog');
         $blog_id = $blog->id;
     }
+    my $limit = $args->{lastn} || 1;
     require MT::Entry;
     my $entry = MT::Entry->load(
                                 {is_featured => 1, blog_id => $blog_id},
                                 {
-                                 limit     => 1,
+                                 limit     => $limit,
                                  'sort'    => 'created_on',
                                  status    => MT::Entry::RELEASE(),
                                  direction => 'descend'
                                 }
     );
-    if ($entry) {
-        $ctx->stash('entry', $entry);
-    }
+    return '' unless $entry;
+    $ctx->stash('entry', $entry);
     my $builder = $ctx->stash('builder');
     my $tokens  = $ctx->stash('tokens');
     my $out     = $builder->build($ctx, $tokens, $cond);

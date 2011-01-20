@@ -3,7 +3,7 @@ id: FeaturedEntry
 author_link: http://appnel.com/
 author_name: The Appnel Group
 description: Enables "sticky" featured entries.
-version: 0.2
+version: 0.3
 schema_version: 0.2
 object_types:
     entry:
@@ -13,6 +13,7 @@ callbacks:
     MT::App::CMS::cms_pre_save.entry: $FeaturedEntry::MT::FeaturedEntry::Sticky::save_featured_status
 tags:
     block:
+        BlogStickyEntries: $FeaturedEntry::MT::FeaturedEntry::Sticky::blog_sticky_entries
         BlogStickyEntry: $FeaturedEntry::MT::FeaturedEntry::Sticky::blog_sticky_entry
         BlogIfHasSticky?: $FeaturedEntry::MT::FeaturedEntry::Sticky::if_blog_has_sticky
         EntryIsSticky?: $FeaturedEntry::MT::FeaturedEntry::Sticky::if_entry_is_sticky
