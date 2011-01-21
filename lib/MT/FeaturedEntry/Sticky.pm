@@ -48,7 +48,7 @@ sub save_featured_status {
 sub blog_sticky_entry {
     my ($ctx, $args, $cond) = @_;
     $args->{lastn} = 1;
-    reuturn blog_sticky_entries($ctx,$args, $cond);
+    return blog_sticky_entries($ctx,$args, $cond);
 }
 
 sub blog_stick_entries {
